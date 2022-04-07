@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react-helmet-async": "^1.2.3",
+    "react-query": "^3.34.19",
+    "react-router-dom": "^5.3.0",
+    "styled-components": "^5.3.5",
+    "styled-reset": "^1.7.1"
+  }
+}
