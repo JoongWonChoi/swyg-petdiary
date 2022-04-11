@@ -1,6 +1,7 @@
 package com.swyg.petdiary.controller;
 
 
+import com.swyg.petdiary.domain.Member;
 import com.swyg.petdiary.dto.MemberDto;
 import com.swyg.petdiary.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,15 @@ public class JoinController {
     public Map join(@RequestBody MemberDto memberDto) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
         Long join = memberService.join(memberDto);
+        String email;
         try {
-            memberService.findById(join);
+            email = memberService.findById(join);
         } catch (Exception e) {
             map.put("join_Success", false);
+            return map;
         }
         map.put("join_Success", true);
+        map.put("email", email);
         return map;
     }
 }

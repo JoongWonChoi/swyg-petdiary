@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class MemberServiceImpl implements MemberService{
     @Autowired private MemberRepository memberRepository;
-    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
+    //@Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /*회원 Id값으로 찾기*/
     @Override
@@ -34,14 +34,13 @@ public class MemberServiceImpl implements MemberService{
     public Long join(MemberDto memberDto) throws Exception{
         Member member = new Member();
         validateDuplicateEmail(memberDto.getEmail());
-        member.createMember(memberDto.getEmail(), bCryptPasswordEncoder.encode(memberDto.getPassword()), memberDto.getName());
+        member.createMember(memberDto.getEmail(), memberDto.getPassword(), memberDto.getName());
         Member joinedMember = memberRepository.save(member);
         return joinedMember.getId();
     }
-
     private void validateDuplicateEmail(String email) throws Exception{ //이메일 중복확인
         Optional<Member> member = memberRepository.findByEmail(email);
-        if (member.isPresent()) {
+        if (!member.isEmpty()) {
             throw new Exception("already exists member");
         }
     }
