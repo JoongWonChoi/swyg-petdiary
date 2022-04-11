@@ -24,16 +24,15 @@ public class JoinController {
     @PostMapping("/join")
     public Map join(@RequestBody MemberDto memberDto) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
-        Long join = memberService.join(memberDto);
-        String email;
+        Long join;
         try {
-            email = memberService.findById(join);
+             join = memberService.join(memberDto);
         } catch (Exception e) {
             map.put("join_Success", false);
             return map;
         }
         map.put("join_Success", true);
-        map.put("email", email);
+        map.put("email", memberService.findById(join));
         return map;
     }
 }
