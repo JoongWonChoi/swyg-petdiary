@@ -18,4 +18,10 @@ public class Pet {
     private String birthDay; //펫 생일
     private String sex; //펫 성별
 
+    public void registerPet(String name, String type, String birthDay, String sex) {
+        this.name = name;
+        this.type = type;
+        this.birthDay = birthDay;
+        this.sex = sex;
+    }
 }
