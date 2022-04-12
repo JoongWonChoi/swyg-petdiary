@@ -1,4 +1,4 @@
-package com.swyg.petdiary.service;
+package com.swyg.petdiary.service.member;
 
 import com.swyg.petdiary.dto.MemberDto;
 
