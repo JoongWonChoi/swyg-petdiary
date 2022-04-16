@@ -17,7 +17,7 @@ public class PetServiceImpl implements PetService{
 
     /*펫 등록*/
     @Override
-    public Long register(PetDto petDto) {
+    public Long register(PetDto petDto) { //펫 등록은 딱히 거부되는 에러가 없음  
         Pet pet = new Pet();
         pet.registerPet(petDto.getName(), petDto.getType(), petDto.getBirthDay(), petDto.getSex());
         petRepository.save(pet);
