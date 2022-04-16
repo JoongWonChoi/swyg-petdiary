@@ -8,5 +8,5 @@ import lombok.Setter;
 public class BoardDto {
 
     private Long id;
-    private String name; //게시판 명
+    private String boardName; //게시판 명
 }

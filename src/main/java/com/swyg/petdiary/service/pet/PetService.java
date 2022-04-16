@@ -4,6 +4,6 @@ import com.swyg.petdiary.domain.Pet;
 import com.swyg.petdiary.dto.PetDto;
 
 public interface PetService {
-    Long register(PetDto petDto);
+    Pet register(PetDto petDtom, Long memberId);
     Pet findById(Long id);
 }

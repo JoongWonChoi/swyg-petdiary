@@ -19,13 +19,13 @@ public class MemberServiceImpl implements MemberService{
 
     /*회원 Id값으로 찾기*/
     @Override
-    public String findById(Long id) throws Exception {
+    public Member findById(Long id) throws Exception {
         Optional<Member> member = memberRepository.findById(id);
         if (member.isEmpty()) {
             throw new Exception("not exists Member");
         }
         else{
-            return member.get().getEmail();
+            return member.get();
         }
     }
     /*회원가입*/

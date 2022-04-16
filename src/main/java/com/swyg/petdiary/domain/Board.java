@@ -9,7 +9,7 @@ public class Board { //게시판 테이블과 매핑
 
     @Id @GeneratedValue
     private Long id;
-    private String name; //게시판 명
+    private String boardName; //게시판 명
 
     @OneToMany
     private List<Post> posts; //게시판에 저장된 게시글들
@@ -25,12 +25,12 @@ public class Board { //게시판 테이블과 매핑
     }
 
     /*게시물 생성 로직*/
-    public void createBoard(String name, Member member) {
-        this.name = name;
+    public void createBoard(String boardName, Member member) {
+        this.boardName = boardName;
         this.member = member;
     }
     /*게시물 수정 로직*/
-    public void updateBoard(String name) {
-        this.name = name;
+    public void updateBoard(String boardName) {
+        this.boardName = boardName;
     }
 }
