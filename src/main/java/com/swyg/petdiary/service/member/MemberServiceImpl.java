@@ -20,13 +20,7 @@ public class MemberServiceImpl implements MemberService{
     /*회원 Id값으로 찾기*/
     @Override
     public Member findById(Long id) throws Exception {
-        Optional<Member> member = memberRepository.findById(id);
-        if (member.isEmpty()) {
-            throw new Exception("not exists Member");
-        }
-        else{
-            return member.get();
-        }
+        return memberRepository.findById(id).orElseThrow(() -> new Exception("not exist member"));
     }
     /*회원가입*/
     @Override
@@ -38,6 +32,20 @@ public class MemberServiceImpl implements MemberService{
         Member joinedMember = memberRepository.save(member);
         return joinedMember.getId();
     }
+    /*회원 수정*/
+    @Override
+    @Transactional
+    public Member update(MemberDto memberDto) throws Exception {
+        Member member = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new Exception("not exist member"));
+        member.updateMember(bCryptPasswordEncoder.encode(memberDto.getPassword()), memberDto.getName());
+        return member;
+    }
+    /*회원 삭제(탈퇴)*/
+    @Override
+    public boolean delete(Long memberId) throws Exception {
+        return false;
+    }
+
     private void validateDuplicateEmail(String email) throws Exception{ //이메일 중복확인
         Optional<Member> member = memberRepository.findByEmail(email);
         if (!member.isEmpty()) {
