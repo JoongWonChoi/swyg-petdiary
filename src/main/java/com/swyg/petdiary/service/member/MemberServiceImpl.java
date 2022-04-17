@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     @Transactional
     public Member update(MemberDto memberDto) throws Exception {
-        Member member = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new Exception("not exist member"));
+        Member member = findById(memberDto.getId());
         member.updateMember(bCryptPasswordEncoder.encode(memberDto.getPassword()), memberDto.getName());
         return member;
     }

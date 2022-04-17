@@ -1,4 +1,5 @@
 package com.swyg.petdiary.domain;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Member { //회원 객체 (회원 테이블 매핑)
     @OneToMany(mappedBy="member") //Post Entity의 'member(FK)' 필드에 의해 참조됨
     private List<Post> posts;
     @OneToMany(mappedBy="member") //Board Entity의 'member(FK)' 필드에 의해 참조됨
+    @JsonBackReference
     private List<Board> boards;
     @OneToMany(mappedBy="member") //Comment Entity의 'member(FK)' 필드에 의해 참조됨
     private List<Comment> comments;

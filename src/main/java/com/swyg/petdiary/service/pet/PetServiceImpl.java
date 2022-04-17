@@ -32,7 +32,7 @@ public class PetServiceImpl implements PetService{
     /*펫 등록*/
     @Transactional
     @Override
-    public Pet register(PetDto petDto, Long memberId) throws Exception{ //펫 등록은 딱히 거부되는 에러가 없음
+    public Pet register(PetDto petDto, Long memberId) throws Exception{
         Pet pet = new Pet();
         Member member =  memberService.findById(memberId);
         pet.registerPet(petDto.getPetName(), petDto.getType(), petDto.getTypeDetail(), petDto.getBirthDay(), petDto.getSex(), member);

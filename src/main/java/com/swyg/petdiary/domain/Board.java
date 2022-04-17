@@ -1,4 +1,5 @@
 package com.swyg.petdiary.domain;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Board { //게시판 테이블과 매핑
     private List<Post> posts; //게시판에 저장된 게시글들
 
     @ManyToOne //FK
+    @JsonManagedReference
     @JoinColumn(name="member_id")
     private Member member; //게시판을 생성한 회원 참조
 
