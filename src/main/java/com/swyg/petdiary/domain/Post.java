@@ -24,6 +24,7 @@ public class Post { //게시물 테이블과 매핑
     @ManyToOne//FK
     @JoinColumn(name="board_id")
     private Board board; //게시글이 속한 게시판
+
     @ManyToOne//FK
     @JoinColumn(name="member_id")
     private Member member; //게시글을 작성한 회원
