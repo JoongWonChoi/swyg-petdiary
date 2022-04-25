@@ -23,8 +23,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public Board findById(Long boardId) throws Exception {
-        Board board = boardRepository.findById(boardId).orElseThrow(()->new Exception("not exists Board"));
-        return null;
+        return boardRepository.findById(boardId).orElseThrow(()->new Exception("not exists Board"));
     }
     @Transactional
     @Override
@@ -45,7 +44,6 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<ViewAllBoardInterface> viewAllBoards(Member member) throws Exception {
         //Member member = memberService.findById(memberId);
-
         return boardRepository.findBoardsByMemberId(member);
     }
 
