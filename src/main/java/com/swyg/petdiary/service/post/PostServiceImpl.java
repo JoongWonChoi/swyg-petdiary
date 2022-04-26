@@ -20,10 +20,10 @@ public class PostServiceImpl implements PostService{
     public Post findPost(Long id) throws Exception {
         return postRepository.findById(id).orElseThrow(()->new Exception("not exist post"));
     }
-
+    /*게시물 조회 로직*/
     @Override
-    public Post viewPost() {
-        return null;
+    public Post viewPost(Long id) throws Exception{
+        return findPost(id);
     }
 
     @Override

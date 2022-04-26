@@ -7,7 +7,7 @@ import java.util.List;
 public interface PostService {
 
     Post findPost(Long id) throws Exception;
-    Post viewPost();
+    Post viewPost(Long id)throws Exception;
     Post createPost();
     Post editPost();
     List viewAllPosts();
