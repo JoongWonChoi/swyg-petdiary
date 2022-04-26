@@ -41,8 +41,6 @@ public class PostController {
         PostDto postDto = new PostDto();
         postDto.setViewPostAPI(post.getId(), post.getTitle(), post.getBody(), post.getUploadTime(), post.getMember(), post.getBoard());
         return postDto.getViewPostAPI();
-
-
     }
 
     /* 게시물 작성 */
