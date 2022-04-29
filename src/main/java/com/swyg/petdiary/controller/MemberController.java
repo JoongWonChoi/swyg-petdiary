@@ -1,6 +1,5 @@
 package com.swyg.petdiary.controller;
 
-
 import com.swyg.petdiary.config.auth.MemberAdapter;
 import com.swyg.petdiary.domain.Member;
 import com.swyg.petdiary.dto.MemberDto;
@@ -44,12 +43,16 @@ public class MemberController {
         }
         /*post info*/
         ArrayList<LinkedHashMap<String, Object>> posts = new ArrayList<>();
-
-        /*comment info*/
-        ArrayList<LinkedHashMap<String, Object>> comments = new ArrayList<>();
+        for(int i=0; i<member.getPosts().size();i++){
+            LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+            map.put("id",member.getPosts().get(i).getId());
+            map.put("title",member.getPosts().get(i).getTitle());
+            map.put("uploadTime", member.getPosts().get(i).getUploadTime());
+            posts.add(map);
+        }
 
         MemberDto memberDto = new MemberDto();
-        memberDto.setViewMemberAPI(member.getEmail(), member.getName(), pets, posts, comments);
+        memberDto.setViewMemberAPI(member.getEmail(), member.getName(), pets, posts);
         return memberDto.getViewMemberAPI();
     }
     /*회원 수정*/

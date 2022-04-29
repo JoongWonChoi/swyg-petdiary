@@ -18,7 +18,7 @@ public class MemberDto {
 
     private List<LinkedHashMap<String, Object>> pets;
     private List<LinkedHashMap<String, Object>> posts;
-    private List<LinkedHashMap<String, Object>> comments;
+    //private List<LinkedHashMap<String, Object>> comments;
 
 
     /*로그인 API*/
@@ -35,12 +35,11 @@ public class MemberDto {
 
     /*회원 가입 API*/
     /*회원 조회 API ( my page )*/
-    public void setViewMemberAPI(String email, String name, List<LinkedHashMap<String, Object>> pets, List<LinkedHashMap<String, Object>> posts, List<LinkedHashMap<String, Object>> comments) {
+    public void setViewMemberAPI(String email, String name, List<LinkedHashMap<String, Object>> pets, List<LinkedHashMap<String, Object>> posts) {
         this.email = email;
         this.name = name;
         this.pets = pets;
         this.posts = posts;
-        this.comments = comments;
     }
 
     public Map getViewMemberAPI() {
@@ -49,7 +48,6 @@ public class MemberDto {
         map.put("name", name);
         map.put("pets", pets);
         map.put("posts", posts);
-        map.put("comments", comments);
         return map;
     }
 
