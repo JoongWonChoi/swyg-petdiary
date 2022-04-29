@@ -1,15 +1,14 @@
 package com.swyg.petdiary.controller;
 
 
+import com.swyg.petdiary.config.auth.MemberAdapter;
 import com.swyg.petdiary.domain.Post;
 import com.swyg.petdiary.dto.PostDto;
 import com.swyg.petdiary.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,15 +38,30 @@ public class PostController {
             return map;
         }
         PostDto postDto = new PostDto();
-        postDto.setViewPostAPI(post.getId(), post.getTitle(), post.getBody(), post.getUploadTime(), post.getMember(), post.getBoard());
+        postDto.setViewPostAPI(post.getId(), post.getTitle(), post.getBody(), post.getUploadTime(), post.getMember().getName(), post.getBoard().getBoardName());
         return postDto.getViewPostAPI();
     }
 
     /* 게시물 작성 */
     @PostMapping("/post/new")
+    public Map creatBoard(@RequestBody PostDto postDto, @AuthenticationPrincipal MemberAdapter memberAdapter) {
+        Post post;
+        try{
+            post = postService.createPost(postDto, memberAdapter.getMember().getId());
+        }
+        catch(Exception e){
+            Map map = new HashMap();
+            map.put("createSuccess", false);
+            return map;
+        }
+        PostDto postDtoAPI = new PostDto();
+        postDtoAPI.setCreatePostAPI(post.getId(), post.getTitle(), post.getMember().getName());
+        return postDtoAPI.getCreatePostAPI();
+
+    }
 
     /* 게시물 수정 */
-    @PostMapping("/post/edit")
+    //@PostMapping("/post/edit")
 
 
 }

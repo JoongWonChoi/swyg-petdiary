@@ -34,15 +34,17 @@ public class PostServiceImpl implements PostService{
         return findPost(id);
     }
     /*게시물 작성 로직*/
+    @Transactional
     @Override
-    public Post createPost(PostDto postDto, Long memberId, Long boardId) throws Exception {
+    public Post createPost(PostDto postDto, Long memberId) throws Exception {
         Member member = memberService.findById(memberId);
-        Board board = boardService.findById(boardId);
+        Board board = boardService.findById(postDto.getBoardId());
         Post post = new Post();
         post.createPost(postDto.getTitle(), postDto.getBody(), board, member);
         return postRepository.save(post);
     }
 
+    @Transactional
     @Override
     public Post editPost() {
         return null;
