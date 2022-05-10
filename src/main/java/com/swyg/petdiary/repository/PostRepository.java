@@ -13,6 +13,6 @@ import java.util.*;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query(value = "select p.id as id, p.title as title, p.body as body, p.upload_time as uploadTime from Post p where p.board_id = :boardId",nativeQuery = true)
-    Optional<List<ViewAllPostInterface>> findByBoardId(@Param("boardId") Long boardId);
+    @Query(value = "select p.id as id, p.title as title, p.body as body, p.upload_time as uploadTime, count(*) as commentNum from Post p, Comment c where p.board_id = :boardId", nativeQuery = true)
+    List<ViewAllPostInterface> findByBoardId(@Param("boardId") Long boardId);
 }

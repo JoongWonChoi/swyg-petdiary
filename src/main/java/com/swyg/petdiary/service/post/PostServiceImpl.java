@@ -60,7 +60,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List viewBoardPosts(Long boardId) throws Exception{
-        List<ViewAllPostInterface> boardPosts = postRepository.findByBoardId(boardId).orElseThrow(() -> new Exception("not exists board or posts"));
+        List<ViewAllPostInterface> boardPosts = postRepository.findByBoardId(boardId);
         return boardPosts;
     }
 }
