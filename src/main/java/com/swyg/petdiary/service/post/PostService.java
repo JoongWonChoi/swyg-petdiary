@@ -10,7 +10,8 @@ public interface PostService {
     Post findPost(Long id) throws Exception;
     Post viewPost(Long id) throws Exception;
     Post createPost(PostDto postDto, Long memberId) throws Exception;
-    Post editPost();
-    List viewAllPosts();
+    Post editPost(PostDto postDto, Long id) throws Exception;
+    List viewAllPosts() throws Exception;
+    List viewBoardPosts(Long boardId) throws Exception;
 
 }

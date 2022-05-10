@@ -4,6 +4,7 @@ import com.swyg.petdiary.domain.Board;
 import com.swyg.petdiary.domain.Member;
 import com.swyg.petdiary.domain.Post;
 import com.swyg.petdiary.dto.PostDto;
+import com.swyg.petdiary.dto.viewAllPosts.ViewAllPostInterface;
 import com.swyg.petdiary.repository.PostRepository;
 import com.swyg.petdiary.service.board.BoardService;
 import com.swyg.petdiary.service.member.MemberService;
@@ -46,12 +47,20 @@ public class PostServiceImpl implements PostService{
 
     @Transactional
     @Override
-    public Post editPost() {
-        return null;
+    public Post editPost(PostDto postDto, Long id) throws Exception {
+        Post post = findPost(id);
+        post.updatePost(postDto.getTitle(), post.getBody());
+        return post;
     }
 
     @Override
     public List viewAllPosts() {
         return null;
+    }
+
+    @Override
+    public List viewBoardPosts(Long boardId) throws Exception{
+        List<ViewAllPostInterface> boardPosts = postRepository.findByBoardId(boardId).orElseThrow(() -> new Exception("not exists board or posts"));
+        return boardPosts;
     }
 }

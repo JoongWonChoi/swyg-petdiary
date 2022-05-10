@@ -5,13 +5,12 @@ import com.swyg.petdiary.config.auth.MemberAdapter;
 import com.swyg.petdiary.domain.Board;
 import com.swyg.petdiary.dto.BoardDto;
 import com.swyg.petdiary.service.board.BoardService;
+import com.swyg.petdiary.service.post.PostService;
+import jdk.jshell.spi.ExecutionControlProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +21,9 @@ import java.util.Map;
 public class BoardController {
     @Autowired
     private final BoardService boardService;
+    @Autowired
+    private final PostService postService;
+
 
     /*게시판 생성*/
     @PostMapping("/board/new")
@@ -57,7 +59,15 @@ public class BoardController {
 
     /*나의 전체 게시판 보기*/
     @GetMapping("/boards")
-    public List viewAllMyBoards(@AuthenticationPrincipal MemberAdapter memberAdapter) throws Exception{
+    public List viewAllMyBoards(@AuthenticationPrincipal MemberAdapter memberAdapter) throws Exception {
         return boardService.viewAllBoards(memberAdapter.getMember());
     }
+
+    /*게시판 내의 전체 게시물 조회*/
+    @GetMapping("/board/{id}")
+    public Object viewBoardPosts(@PathVariable("id") Long boardId) throws Exception {
+
+        return postService.viewBoardPosts(boardId);
+    }
+
 }
