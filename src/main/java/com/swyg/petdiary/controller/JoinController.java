@@ -30,7 +30,7 @@ public class JoinController {
             return map;
         }
         map.put("join_Success", true);
-        map.put("email", memberService.findById(join));
+        map.put("email", memberService.findById(join).getEmail());
         return map;
     }
 

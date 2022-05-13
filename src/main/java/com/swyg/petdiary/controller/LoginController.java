@@ -1,6 +1,5 @@
 package com.swyg.petdiary.controller;
 
-
 import com.swyg.petdiary.config.auth.MemberAdapter;
 import com.swyg.petdiary.dto.MemberDto;
 import lombok.RequiredArgsConstructor;

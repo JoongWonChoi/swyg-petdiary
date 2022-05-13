@@ -7,3 +7,19 @@
 -회원가입 api
 -전체적으로 보완
 -양식 entity 구상하기
+-답글 entity
+
+
+
+0513
+redux - api 보내면 프론트 스토리지에 저장 하는 방식
+이미지 저장 - 클라우디너리 or aws 같은 클라우드에 저장하여 db에 해당 url 저장
+insomnia - api 로컬 테스트 가능
+동근이형 인텔리제이 설치 
+
+pathVariable vs req body에 id 값 넘기기
+협업하는 개발자들이 알기 쉬운 방향으로 생각해보기
+ex) 
+-post/1/comments
+-->이렇게 해당 게시물의 세부 정보들로 들어가 ㄹ떈 이 방식이 나음
+-post + req body{id:1}
