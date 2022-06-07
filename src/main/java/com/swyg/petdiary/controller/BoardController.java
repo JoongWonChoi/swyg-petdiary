@@ -13,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,8 +67,11 @@ public class BoardController {
     /*게시판 내의 전체 게시물 조회*/
     @GetMapping("/board/{id}")
     public Object viewBoardPosts(@PathVariable("id") Long boardId) throws Exception {
-
-        return postService.viewBoardPosts(boardId);
+        HashMap<String, Object> map = new LinkedHashMap<>();
+        Board board = boardService.findById(boardId);
+        map.put("boardName", board.getBoardName());
+        map.put("posts", postService.viewBoardPosts(boardId));
+        return map;
     }
     /*게시판 삭제*/
     @PostMapping("/board/delete")

@@ -30,7 +30,6 @@ public class PostServiceImpl implements PostService{
     }
     /*게시물 조회 로직*/
     @Override
-    @Transactional
     public Post viewPost(Long id) throws Exception{
         return findPost(id);
     }
@@ -63,13 +62,15 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public List viewAllPosts() { //제목, 내용, 작성일자, 댓글 수
-        List<Post> posts = postRepository.findAll();
-        return null;
+        List<ViewAllPostInterface> posts = postRepository.findAllPosts();
+        return posts;
     }
 
     @Override
     public List viewBoardPosts(Long boardId) throws Exception{
-        List<ViewAllPostInterface> boardPosts = postRepository.findByBoardId(boardId);
+        Board board = boardService.findById(boardId);
+        List<ViewAllPostInterface> boardPosts = postRepository.findByBoard(boardId);
+        System.out.println(boardPosts.size());
         return boardPosts;
     }
 }

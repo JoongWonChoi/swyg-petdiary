@@ -3,6 +3,7 @@ package com.swyg.petdiary.service.comment;
 import com.swyg.petdiary.domain.Comment;
 import com.swyg.petdiary.domain.Member;
 import com.swyg.petdiary.dto.CommentDto;
+import com.swyg.petdiary.dto.postComments.PostComments;
 import com.swyg.petdiary.repository.CommentRepository;
 import com.swyg.petdiary.service.post.PostService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,11 @@ public class CommentServiceImpl implements  CommentService{
     @Override
     public Comment findComment(Long commentId) throws Exception {
         return commentRepository.findById(commentId).orElseThrow(() -> new Exception("not exists comment"));
+    }
+
+    @Override
+    public List<PostComments> findByPostId(Long postId) {
+        return commentRepository.findByPostId(postId);
     }
 
     @Override

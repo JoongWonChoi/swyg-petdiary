@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,5 +57,10 @@ public class ReplyServiceImpl implements ReplyService{
         Reply reply = findReply(replyDto.getReplyId());
         replyRepository.delete(reply);
         return true;
+    }
+
+    @Override
+    public List findByCommentId(Long commentId) {
+        return replyRepository.findByCommentId(commentId);
     }
 }

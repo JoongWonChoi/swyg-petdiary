@@ -1,9 +1,11 @@
 package com.swyg.petdiary.dto;
 
+import com.swyg.petdiary.domain.Post;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -21,6 +23,9 @@ public class PostDto {
     private String name;
     /*게시물당 댓글 수*/
     private int commentNum;
+
+    private Post post;
+    private List comments;
 
 
     //private List<Comment> comment;
@@ -42,13 +47,14 @@ public class PostDto {
     }
 
     /*게시물 조회 API*/
-    public void setViewPostAPI(Long id, String title, String body, String uploadTime, String writer, String boardName) {
+    public void setViewPostAPI(Long id, String title, String body, String uploadTime, String writer, String boardName, List comments) {
         this.postId = id;
         this.title = title;
         this.body = body;
         this.uploadTime = uploadTime;
         this.name = writer;
         this.boardName = boardName;
+        this.comments = comments;
         //this.comment = comment;
 
     }
@@ -60,6 +66,7 @@ public class PostDto {
         map.put("uploadTime", uploadTime);
         map.put("writer", name);
         map.put("boardName", boardName);
+        map.put("comments", comments);
         return map;
     }
 
