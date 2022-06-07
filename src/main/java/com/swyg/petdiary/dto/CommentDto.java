@@ -10,7 +10,7 @@ import java.util.Map;
 @Setter
 public class CommentDto {
 
-    private Long id;
+    private Long commentId;
     private Long postId; //댓글을 작성한 게시물 id
     private String content; // 댓글 내용
     private String createTime; // 댓글 작성 일자 및 시간

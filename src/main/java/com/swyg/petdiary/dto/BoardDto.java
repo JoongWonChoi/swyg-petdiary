@@ -12,7 +12,7 @@ import java.util.Map;
 @Setter
 public class BoardDto {
 
-    private Long id;
+    private Long boardId;
     private String boardName; //게시판 명
 
     /*게시판 생성 API*/

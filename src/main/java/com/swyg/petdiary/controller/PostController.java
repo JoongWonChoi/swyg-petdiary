@@ -3,7 +3,9 @@ package com.swyg.petdiary.controller;
 
 import com.swyg.petdiary.config.auth.MemberAdapter;
 import com.swyg.petdiary.domain.Post;
+import com.swyg.petdiary.domain.Reply;
 import com.swyg.petdiary.dto.PostDto;
+import com.swyg.petdiary.dto.ReplyDto;
 import com.swyg.petdiary.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +62,35 @@ public class PostController {
 
     }
 
-    /* 게시물 수정 */
-    //@PostMapping("/post/edit")
+    /*게시물 수정*/
+    @PostMapping("/post/edit")
+    public Map updatePost(@RequestBody PostDto postDto) {
+        Post post;
+        Map<String, Object> map = new HashMap<>();
+        try {
+            post = postService.editPost(postDto);
+        } catch (Exception e) {
+            map.put("updateSuccess", false);
+            return map;
+        }
+        map.put("updateSuccess", true);
+        return map;
+    }
+
+    /*게시물 삭제*/
+    @PostMapping("/post/delete")
+    public Map deletePost(@RequestBody PostDto postDto) {
+        boolean b;
+        Map<String, Object> map = new HashMap<>();
+        try {
+            b = postService.deletePost(postDto);
+        } catch (Exception e) {
+            map.put("deleteSuccess", false);
+            return map;
+        }
+        map.put("deleteSuccess", true);
+        return map;
+    }
 
 
 }

@@ -12,5 +12,6 @@ public interface BoardService {
     Board create(BoardDto boardDto, Long memberId) throws Exception;
     Board update(BoardDto boardDto) throws Exception;
     List<ViewAllBoardInterface> viewAllBoards(Member member) throws Exception;
+    boolean deleteBoard(BoardDto boardDto) throws Exception;
 
 }

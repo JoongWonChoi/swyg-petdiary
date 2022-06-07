@@ -42,14 +42,17 @@ public class PetServiceImpl implements PetService{
     @Override
     @Transactional
     public Pet update(PetDto petDto) throws Exception {
-        Pet pet = findById(petDto.getId());
+        Pet pet = findById(petDto.getPetId());
         pet.updatePet(petDto.getPetName(), petDto.getType(), petDto.getTypeDetail(), petDto.getBirthDay(), petDto.getSex());
         return pet;
     }
 
     /*펫 삭제*/
     @Override
+    @Transactional
     public boolean remove(Long petId) throws Exception {
+        Pet pet = findById(petId);
+        petRepository.delete(pet);
         return false;
     }
 }

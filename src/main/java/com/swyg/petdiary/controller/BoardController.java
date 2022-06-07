@@ -69,5 +69,20 @@ public class BoardController {
 
         return postService.viewBoardPosts(boardId);
     }
+    /*게시판 삭제*/
+    @PostMapping("/board/delete")
+    public Map deleteBoard(@RequestBody BoardDto boardDto) {
+        boolean b;
+        HashMap<String, Boolean> map = new HashMap();
+        try{
+            b = boardService.deleteBoard(boardDto);
+        }
+        catch(Exception e){
 
+            map.put("deleteSuccess", false);
+            return map;
+        }
+        map.put("deleteSuccess", true);
+        return map;
+    }
 }

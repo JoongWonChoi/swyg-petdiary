@@ -10,7 +10,7 @@ import java.util.Map;
 @Setter
 public class PostDto {
 
-    private Long id;
+    private Long postId;
     private String title; //제목
     private String body; //내용
     private String uploadTime; //작성일자 및 시간
@@ -27,7 +27,7 @@ public class PostDto {
 
     /*게시물 작성 API*/
     public void setCreatePostAPI(Long id, String title, String writer) {
-        this.id = id;
+        this.postId = id;
         this.title = title;
         this.name = writer;
 
@@ -35,7 +35,7 @@ public class PostDto {
     public Map getCreatePostAPI() {
         LinkedHashMap<String, Object> map = new LinkedHashMap<>();
         map.put("createSuccess", true);
-        map.put("id", id);
+        map.put("id", postId);
         map.put("title", title);
         map.put("writer", name);
         return map;
@@ -43,7 +43,7 @@ public class PostDto {
 
     /*게시물 조회 API*/
     public void setViewPostAPI(Long id, String title, String body, String uploadTime, String writer, String boardName) {
-        this.id = id;
+        this.postId = id;
         this.title = title;
         this.body = body;
         this.uploadTime = uploadTime;
@@ -54,7 +54,7 @@ public class PostDto {
     }
     public Map getViewPostAPI() {
         LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-        map.put("id", id);
+        map.put("id", postId);
         map.put("title", title);
         map.put("body", body);
         map.put("uploadTime", uploadTime);

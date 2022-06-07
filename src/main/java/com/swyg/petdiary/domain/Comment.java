@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +23,9 @@ public class Comment { //댓글 테이블과 매핑
     @ManyToOne//FK
     @JoinColumn(name="member_id")
     private Member member; //댓글을 쓴 회원 참조
+
+    @OneToMany(mappedBy = "member") //Reply Entity의 'member(FK)' 필드에 의해 참조됨
+    private List<Reply> replies;
 
     /*연관관계 메서드*/
     public void addCommentInMember(Member member) {
@@ -55,5 +59,4 @@ public class Comment { //댓글 테이블과 매핑
         this.createTime = simpleDateFormat.format(dateTime);
 
     }
-
 }

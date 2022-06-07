@@ -26,6 +26,8 @@ public class Member { //회원 객체 (회원 테이블 매핑)
     private List<Board> boards;
     @OneToMany(mappedBy="member") //Comment Entity의 'member(FK)' 필드에 의해 참조됨
     private List<Comment> comments;
+    @OneToMany(mappedBy = "member") //Reply Entity의 'member(FK)' 필드에 의해 참조됨
+    private List<Reply> replies;
 
 
     /*==메인 로직==*/

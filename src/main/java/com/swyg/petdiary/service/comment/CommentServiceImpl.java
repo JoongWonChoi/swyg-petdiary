@@ -36,7 +36,7 @@ public class CommentServiceImpl implements  CommentService{
     @Override
     @Transactional
     public Comment updateComment(CommentDto commentDto) throws Exception {
-        Comment comment = findComment(commentDto.getId());
+        Comment comment = findComment(commentDto.getCommentId());
         comment.updateComment(commentDto.getContent());
         return comment;
     }
@@ -46,7 +46,7 @@ public class CommentServiceImpl implements  CommentService{
     public Boolean deleteComment(CommentDto commentDto) throws Exception {
         Comment comment;
         try{
-            comment = findComment(commentDto.getId());
+            comment = findComment(commentDto.getCommentId());
         }
         catch(Exception e){
             return false;

@@ -11,7 +11,7 @@ import java.util.Map;
 @Getter
 @Setter
 public class PetDto {
-    private Long id;
+    private Long petId;
     private String petName; //펫 이름
     private String type; //펫 종류
     private String typeDetail; //펫 품종
@@ -32,7 +32,7 @@ public class PetDto {
 
     /*펫 조회API*/
     public void setViewPetAPI(Long id, String petName, String type, String typeDetail, String birthDay, String sex) {
-        this.id = id;
+        this.petId = id;
         this.petName = petName;
         this.type = type;
         this.typeDetail = typeDetail;
@@ -41,7 +41,7 @@ public class PetDto {
     }
     public Map getViewPetAPI() {
         LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-        map.put("id", id);
+        map.put("id", petId);
         map.put("findSuccess", true);
         map.put("petName", petName);
         map.put("type", type);

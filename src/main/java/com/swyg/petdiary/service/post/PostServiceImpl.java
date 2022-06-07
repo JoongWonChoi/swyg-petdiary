@@ -47,14 +47,23 @@ public class PostServiceImpl implements PostService{
 
     @Transactional
     @Override
-    public Post editPost(PostDto postDto, Long id) throws Exception {
-        Post post = findPost(id);
+    public Post editPost(PostDto postDto) throws Exception {
+        Post post = findPost(postDto.getPostId());
         post.updatePost(postDto.getTitle(), post.getBody());
         return post;
     }
 
     @Override
-    public List viewAllPosts() {
+    @Transactional
+    public boolean deletePost(PostDto postDto) throws Exception {
+        Post post = findPost(postDto.getPostId());
+        postRepository.delete(post);
+        return true;
+    }
+
+    @Override
+    public List viewAllPosts() { //제목, 내용, 작성일자, 댓글 수
+        List<Post> posts = postRepository.findAll();
         return null;
     }
 

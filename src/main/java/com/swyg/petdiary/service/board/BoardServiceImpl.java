@@ -36,7 +36,7 @@ public class BoardServiceImpl implements BoardService{
     @Transactional
     @Override
     public Board update(BoardDto boardDto) throws Exception {
-        Board board = findById(boardDto.getId());
+        Board board = findById(boardDto.getBoardId());
         board.updateBoard(boardDto.getBoardName());
         return board;
     }
@@ -45,6 +45,14 @@ public class BoardServiceImpl implements BoardService{
     public List<ViewAllBoardInterface> viewAllBoards(Member member) throws Exception {
         //Member member = memberService.findById(memberId);
         return boardRepository.findBoardsByMemberId(member);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteBoard(BoardDto boardDto) throws Exception {
+        Board board = findById(boardDto.getBoardId());
+        boardRepository.delete(board);
+        return false;
     }
 
 }

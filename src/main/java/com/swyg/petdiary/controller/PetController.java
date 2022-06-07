@@ -69,4 +69,19 @@ public class PetController {
     }
 
     /*펫 삭제*/
+    @PostMapping("/pet/delete")
+    public Map deletePet(@RequestBody PetDto petDto) throws Exception{
+        boolean b;
+        HashMap<String, Boolean> map = new HashMap();
+        try{
+            b = petService.remove(petDto.getPetId());
+        }
+        catch(Exception e){
+
+            map.put("deleteSuccess", false);
+            return map;
+        }
+        map.put("deleteSuccess", true);
+        return map;
+    }
 }
