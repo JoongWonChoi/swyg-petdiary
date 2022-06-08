@@ -48,7 +48,7 @@ public class PostServiceImpl implements PostService{
     @Override
     public Post editPost(PostDto postDto) throws Exception {
         Post post = findPost(postDto.getPostId());
-        post.updatePost(postDto.getTitle(), post.getBody());
+        post.updatePost(postDto.getTitle(), postDto.getBody());
         return post;
     }
 

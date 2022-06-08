@@ -44,7 +44,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<ViewAllBoardInterface> viewAllBoards(Member member) throws Exception {
         //Member member = memberService.findById(memberId);
-        return boardRepository.findBoardsByMemberId(member);
+        return boardRepository.findBoardsByMemberId(member.getId());
     }
 
     @Override

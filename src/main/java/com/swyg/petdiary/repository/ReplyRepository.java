@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
-    @Query(value = "select r.id as replyId, m.name as name, r.content as content, r.create_time as createTime from Reply r, Member m where r.comment_id =:commentId",nativeQuery = true)
+    @Query(value = "select r.id as replyId, m.name as name, r.content as content, r.create_time as createTime from reply r, member m where r.comment_id =:commentId",nativeQuery = true)
     List<CommentReplies> findByCommentId(Long commentId);
 }

@@ -1,5 +1,7 @@
 package com.swyg.petdiary.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -22,6 +24,7 @@ public class Post { //게시물 테이블과 매핑
     private List<Comment> comments; //게시글에 작성된 댓글들
 
     @ManyToOne//FK
+    @JsonBackReference
     @JoinColumn(name="board_id")
     private Board board; //게시글이 속한 게시판
 

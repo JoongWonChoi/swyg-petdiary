@@ -66,7 +66,8 @@ public class PostController {
 
     /* 게시물 작성 */
     @PostMapping("/post/new")
-    public Map creatBoard(@RequestBody PostDto postDto, @AuthenticationPrincipal MemberAdapter memberAdapter) {
+    public Map createBoard(@RequestBody PostDto postDto, @AuthenticationPrincipal MemberAdapter memberAdapter) {
+        System.out.println("new post");
         Post post;
         try{
             post = postService.createPost(postDto, memberAdapter.getMember().getId());

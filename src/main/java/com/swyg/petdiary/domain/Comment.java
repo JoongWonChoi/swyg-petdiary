@@ -1,5 +1,6 @@
 package com.swyg.petdiary.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 
@@ -19,7 +20,7 @@ public class Comment { //댓글 테이블과 매핑
     private String createTime; // 댓글 작성 일자 및 시간
 
     @ManyToOne//FK
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name="post_id")
     private Post post; //댓글이 쓰여진 게시물 참조
     @ManyToOne//FK

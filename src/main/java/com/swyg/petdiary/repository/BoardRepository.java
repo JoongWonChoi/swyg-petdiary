@@ -15,7 +15,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     List<Board> findAllByMemberId(Long memberId);
 
-    @Query("select b.id as id, b.boardName as boardName from Board b where b.member = :member")
-    List<ViewAllBoardInterface> findBoardsByMemberId(@Param("member") Member member);
+    @Query(value = "select b.id as id, b.boardName as boardName from board b where b.member_id = :memberId", nativeQuery = true)
+    List<ViewAllBoardInterface> findBoardsByMemberId(@Param("memberId") Long memberId);
 
 }

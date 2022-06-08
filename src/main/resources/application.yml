@@ -1,10 +1,12 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/petdiary
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://petdiary-db.cndg5kfodghb.ap-northeast-2.rds.amazonaws.com/petdiary?serverTimezone=Asia/Seoul
+    #url: jdbc:mysql://comprehensive-design-db.clxbgghrrksn.ap-northeast-2.rds.amazonaws.com:3306/comprehensive_design_db?serverTimezone=Asia/Seoul
+    username: jwc
+    password: wnddnjs11
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    database: MYSQL
     hibernate:
       ddl-auto: update
     properties:

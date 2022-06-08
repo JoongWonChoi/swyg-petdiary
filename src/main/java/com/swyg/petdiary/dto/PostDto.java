@@ -18,17 +18,20 @@ public class PostDto {
     private String uploadTime; //작성일자 및 시간
     /*about board*/
     private String boardName;
-    private Long boardId;
+    private String boardId;
     /*about member*/
     private String name;
     /*게시물당 댓글 수*/
     private int commentNum;
 
     private Post post;
-    private List comments;
+    private List<Object> comments;
 
 
     //private List<Comment> comment;
+    public Long getBoardId() {
+        return Long.parseLong(boardId);
+    }
 
     /*게시물 작성 API*/
     public void setCreatePostAPI(Long id, String title, String writer) {
